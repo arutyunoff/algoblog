@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+	<div class="card text">
+		<div class="card-header">
+			Make
+		</div>
+		<div class="card-body">
+			<h5 class="card-title">Быстрая компиляция/запуск последних изменённых .cpp .py файлов</h5>
+			<p class="card-text">
+				<b>./make.py <параметры></b><br>
+				<b><без></b> - g++ <последний изменённый .cpp><br>
+				<b>a</b> - ./<последний изменённый .out><br>
+				<b>r</b> - g++ <последний изменённый .cpp> && ./<последний изменённый .out><br>
+				<b>d</b> - g++ <последний изменённый .cpp> <параметры для дебага><br>
+				<b>p</b> - pypy3 <последний изменённый .py>
+			</p>
+			<a href="make.py" class="btn btn-primary">Download for Linux</a>
+		</div>
+		<div class="card-footer text-muted">
+			AlgoBlog
+		</div>
+	</div>
+</div>
+
+{% endblock %}

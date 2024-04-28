@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if auth %}
+<div class="row">
+	<div class="alert alert-success" role="alert" style="width: 400px">Добро пожаловать, {{ handle }}!</div>
+</div>
+
+{% else %}
+
+<div class="row">
+	<form action="" method="post">
+		<div class="input-group mb-3" style="width: 400px">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="basic-addon1">@</span>
+			</div>
+			<input type="text" class="form-control" placeholder="Handle" name="handle" aria-label="Handle" aria-describedby="basic-addon1">
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</div>
+	</form>
+</div>
+
+{% if email %}
+<div class="row">
+	<div class="alert alert-primary" role="alert" style="width: 400px">Ожидайте письмо на {{ email }}</div>
+</div>
+<div class="row">
+	<form action="" method="post">
+		<div class="input-group mb-3" style="width: 400px">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="basic-addon1">#</span>
+			</div>
+			<input type="text" class="form-control" placeholder="Code" name="code" aria-label="Code" aria-describedby="basic-addon1">
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</div>
+	</form>
+</div>
+{% elif email == None %}
+<div class="row">
+	<div class="alert alert-danger" role="alert" style="width: 400px">Указан некорректный хэндл или скрыт e-mail</div>
+</div>
+{% endif %}
+
+{% if code and code == secret %}
+<div class="row">
+	<div class="alert alert-success" role="alert" style="width: 400px">Добро пожаловать, {{ handle }}!</div>
+</div>
+{% elif code and code != secret %}
+<div class="row">
+	<div class="alert alert-danger" role="alert" style="width: 400px">Код не совпадает, попробуйте ещё раз</div>
+</div>
+{% endif %}
+
+{% if email and secret %}
+	{% set mail = sendMail(email, secret) %}
+{% endif %}
+
+{% endif %}
+
+{% endblock %}

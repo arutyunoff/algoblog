@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action="" method="post">
+	<div class="row">
+		<div class="input-group mb-3" style="width: 600px">
+			{% if algo and algo.get('name') %}
+			<input type="text" class="form-control" name="name" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1" value="{{ algo.get('name') }}">
+			{% else %}
+			<input type="text" class="form-control" name="name" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1">
+			{% endif %}
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="input-group mb-3" style="width: 600px">
+			{% if algo and algo.get('other') %}
+			<input type="text" class="form-control" name="other" placeholder="Other names" aria-label="Other names" aria-describedby="basic-addon1" value="{{ algo.get('other') }}">
+			{% else %}
+			<input type="text" class="form-control" name="other" placeholder="Other names" aria-label="Other names" aria-describedby="basic-addon1">
+			{% endif %}
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="input-group" style="width: 600px; height: 200px">
+			{% if algo and algo.get('description') %}
+			<textarea class="form-control" name="description" placeholder="Description" aria-label="Description">{{ algo.get('description') }}</textarea>
+			{% else %}
+			<textarea class="form-control" name="description" placeholder="Description" aria-label="Description"></textarea>
+			{% endif %}
+		</div>
+	</div>
+	<p></p>
+
+	<div class="row">
+		<div class="input-group" style="width: 600px; height: 100px">
+			<div class="input-group-prepend">
+				<span class="input-group-text">://</span>
+			</div>
+			{% if algo and algo.get('urls') %}
+			<textarea class="form-control" name="urls" placeholder="URLs" aria-label="URLs">{{ algo.get('urls') }}</textarea>
+			{% else %}
+			<textarea class="form-control" name="urls" placeholder="URLs" aria-label="URLs"></textarea>
+			{% endif %}
+		</div>
+	</div>
+	<p></p>
+
+	<div class="row">
+		<div class="input-group mb-3" style="width: 600px">
+			<div class="input-group-prepend">
+				<span class="input-group-text">://</span>
+			</div>
+			{% if algo and algo.get('paste') %}
+			<input type="text" class="form-control" name="paste" placeholder="Pastebin" aria-label="Pastebin" aria-describedby="basic-addon1" value="{{ algo.get('paste') }}">
+			{% else %}
+			<input type="text" class="form-control" name="paste" placeholder="Pastebin" aria-label="Pastebin" aria-describedby="basic-addon1">
+			{% endif %}
+		</div>
+	</div>
+
+	<div class="row">
+		<button type="submit" class="btn btn-success">Submit</button>
+	</div>
+</form>
+<p></p>
+
+{% endblock %}

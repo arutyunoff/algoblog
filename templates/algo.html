@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+	<form action="" method="post">
+		{% if not auth %}
+		<button type="submit" class="btn btn-secondary" disabled>Добавить алгоритм</button>
+		{% else %}
+		<button type="submit" class="btn btn-secondary">Добавить алгоритм</button>
+		{% endif %}
+	</form>
+</div>
+<p></p>
+
+<div class="row">
+	<form class="form-inline my-2 my-lg-0">
+		<div class="input-group mb-3" style="width: 400px">
+			<input type="search" class="form-control" placeholder="Поиск" name="search" aria-label="Поиск" aria-describedby="basic-addon1">
+			<button type="submit" class="btn btn-outline-success">Поиск</button>
+		</div>
+	</form>
+</div>
+
+{% for note in data %}
+{% set bc = "white" if not user or note.user != user['handle'] else "#d4edc9" %}
+<div class="row">
+	<div class="card" style="background-color: {{ bc }}">
+		<div class="card-body">
+			<h5 class="card-title">{{ note.name }}</h5>
+			<h6 class="card-subtitle mb-2 text-muted">
+				{{ note.other }}
+				<a href="https://codeforces.com/profile/{{ note.user }}" class="badge badge-dark">{{ note.user }}</a>
+			</h6>
+			<p class="card-text">
+				{% for line in note.description.strip().split('\n') %}
+					{{ line.strip() }}<br>
+				{% endfor %}
+			</p>
+			<a href="/reading/{{ note.id }}" class="card-link">Читать</a>
+			<a href="/edit/{{ note.id }}" class="card-link">Править</a>
+			<a href="/delete/{{ note.id }}" class="card-link">Удалить</a>
+		</div>
+	</div>
+</div>
+<p></p>
+{% endfor %}
+
+{% endblock %}
